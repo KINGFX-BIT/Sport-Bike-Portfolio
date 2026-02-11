@@ -1,0 +1,56 @@
+{
+  "$schema": "https://render.com/schema/v1",
+  "services": [
+    {
+      "type": "web",
+      "name": "sport-bike-backend",
+      "runtime": "node",
+      "region": "oregon",
+      "plan": "free",
+      "repo": "https://github.com/KINGFX-BIT/Sport-Bike-Portfolio.git",
+      "branch": "main",
+      "rootDir": "backend",
+      "buildCommand": "npm install",
+      "startCommand": "npm start",
+      "envVars": [
+        {
+          "key": "NODE_ENV",
+          "value": "production"
+        },
+        {
+          "key": "PORT",
+          "value": "5000"
+        },
+        {
+          "key": "FRONTEND_URL",
+          "value": "https://frontend-phi-eight-78.vercel.app"
+        },
+        {
+          "key": "DB_HOST",
+          "value": "ep-falling-hall-ai9vrr1n-pooler.c-4.us-east-1.aws.neon.tech"
+        },
+        {
+          "key": "DB_PORT",
+          "value": "5432"
+        },
+        {
+          "key": "DB_USER",
+          "value": "neondb_owner"
+        },
+        {
+          "key": "DB_PASSWORD",
+          "value": "npg_QaOlvHdZ53Ef"
+        },
+        {
+          "key": "DB_NAME",
+          "value": "neondb"
+        },
+        {
+          "key": "JWT_SECRET",
+          "value": "SportBike2024SecureJWTSecretKeyMinimum32CharactersLong!!"
+        }
+      ],
+      "healthCheckPath": "/api/health"
+    }
+  ]
+}
