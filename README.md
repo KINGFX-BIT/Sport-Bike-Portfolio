@@ -408,6 +408,11 @@ Contributions, issues, and feature requests are welcome!
 
 ## 👨‍💻 Author
 
+**UNMESH PAWAR**  
+Full Stack Web Developer
+
+Design and Development by UNMESH PAWAR
+
 Created with ❤️ for motorcycle enthusiasts
 
 ## 📞 Support

@@ -216,6 +216,13 @@ User: neondb_owner
 
 ---
 
-*Project completed by GitHub Copilot*  
+## 👨‍💻 Developer
+
+**Design and Development by:**  
+**UNMESH PAWAR**  
+*Full Stack Web Developer*
+
+---
+
 *Date: February 11, 2026*  
 *Version: 1.0.0*

@@ -62,12 +62,15 @@ const Footer = () => {
 
         <Row className="mt-4 pt-4 border-top border-secondary">
           <Col className="text-center">
-            <p className="text-secondary mb-0">
+            <p className="text-secondary mb-2">
               &copy; {new Date().getFullYear()} Sport Bike Portfolio. All rights reserved.
               <span className="mx-3">|</span>
               <Link to="/privacy" className="text-secondary text-decoration-none">Privacy Policy</Link>
               <span className="mx-3">|</span>
               <Link to="/terms" className="text-secondary text-decoration-none">Terms of Service</Link>
+            </p>
+            <p className="text-secondary mb-0" style={{fontSize: '0.9rem'}}>
+              Design and Development by <strong>UNMESH PAWAR</strong> - Full Stack Web Developer
             </p>
           </Col>
         </Row>

@@ -693,7 +693,13 @@ SOFTWARE.
 
 ---
 
-**Built with ❤️ by GitHub Copilot for Motorcycle Enthusiasts**
+## 👨‍💻 Developer
+
+**Design and Development by:**  
+**UNMESH PAWAR**  
+*Full Stack Web Developer*
+
+**Built with ❤️ for Motorcycle Enthusiasts**
 
 *Ride Safe, Code Fast! 🏍️💨*
 
