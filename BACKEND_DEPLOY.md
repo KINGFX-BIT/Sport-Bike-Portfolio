@@ -72,7 +72,15 @@
    - Region: Choose closest to your users (e.g., US East)
    - PostgreSQL version: **16** (latest)
 
-3. **Get Connection String**
+3. **Configure IP Allowlist (Important for Render)**
+   - Go to Project Settings → IP Allow
+   - Click **"Add IP Address"**
+   - Add Render's IP ranges:
+     - `74.220.48.0/24`
+     - `74.220.56.0/24`
+   - Or select **"Allow all"** for easier setup (less secure)
+
+4. **Get Connection String**
    - Copy the connection string (looks like):
    ```
    postgresql://user:password@ep-cool-darkness-123456.us-east-2.aws.neon.tech/sportbike_db?sslmode=require
