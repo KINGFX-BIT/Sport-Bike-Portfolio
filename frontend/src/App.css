@@ -1,0 +1,323 @@
+.App {
+  background-color: var(--dark-bg);
+  min-height: 100vh;
+}
+
+/* Navbar Styling */
+.navbar-custom {
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(26, 26, 26, 0.95));
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid var(--border-color);
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-brand {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 2px;
+}
+
+.nav-link {
+  color: var(--text-secondary) !important;
+  font-weight: 600;
+  margin: 0 10px;
+  position: relative;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+}
+
+.nav-link:hover {
+  color: var(--primary-color) !important;
+}
+
+.nav-link.active {
+  color: var(--primary-color) !important;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero-section {
+  min-height: 90vh;
+  background: linear-gradient(135deg, rgba(255, 0, 68, 0.1), rgba(0, 217, 255, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+  opacity: 0.5;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  font-weight: 400;
+}
+
+/* Bike Card */
+.bike-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  height: 100%;
+  position: relative;
+}
+
+.bike-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(255, 0, 68, 0.3);
+  border-color: var(--primary-color);
+}
+
+.bike-card-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.bike-card:hover .bike-card-img {
+  transform: scale(1.1);
+}
+
+.bike-card-body {
+  padding: 20px;
+}
+
+.bike-card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.bike-card-brand {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bike-card-specs {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+  padding: 10px 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.bike-card-spec {
+  text-align: center;
+}
+
+.bike-card-spec-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bike-card-spec-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+}
+
+.bike-card-price {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.wishlist-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.wishlist-icon:hover {
+  background: var(--primary-color);
+  transform: scale(1.1);
+}
+
+.wishlist-icon.active {
+  background: var(--primary-color);
+}
+
+/* Footer */
+.footer {
+  background: var(--card-bg);
+  border-top: 2px solid var(--border-color);
+  padding: 40px 0 20px;
+  margin-top: 80px;
+}
+
+.footer-title {
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.footer-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: var(--primary-color);
+  padding-left: 5px;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--dark-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Filter Section */
+.filter-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.filter-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Pagination */
+.pagination {
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.page-link {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  margin: 0 5px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.page-link:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.page-item.active .page-link {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .navbar-brand {
+    font-size: 1.3rem;
+  }
+}
