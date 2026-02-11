@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Carousel } from 'react-bootstrap';
+import { Container, Row, Col, Carousel, Alert } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { bikeService, brandService } from '../services/api';
 import BikeCard from '../components/BikeCard';
+import Loading from '../components/Loading';
 import { FaBolt, FaTachometerAlt, FaFire } from 'react-icons/fa';
 
 const Home = () => {
   const [featuredBikes, setFeaturedBikes] = useState([]);
   const [brands, setBrands] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [loadingMessage, setLoadingMessage] = useState('Loading amazing bikes...');
 
   useEffect(() => {
     const fetchData = async () => {
+      // Start a timer to show "waking up" message after 3 seconds
+      const wakingTimer = setTimeout(() => {
+        setLoadingMessage('Waking up backend server...');
+      }, 3000);
+
       try {
         const [bikesRes, brandsRes] = await Promise.all([
           bikeService.getFeatured(),
@@ -20,8 +28,15 @@ const Home = () => {
         
         setFeaturedBikes(bikesRes.data.data);
         setBrands(brandsRes.data.data);
+        clearTimeout(wakingTimer);
       } catch (error) {
+        clearTimeout(wakingTimer);
         console.error('Error fetching data:', error);
+        if (error.code === 'ECONNABORTED') {
+          setError('Backend is waking up. Please refresh the page in a few seconds.');
+        } else {
+          setError('Unable to load data. Please check your connection.');
+        }
       } finally {
         setLoading(false);
       }
@@ -31,12 +46,20 @@ const Home = () => {
   }, []);
 
   if (loading) {
+    return <Loading message={loadingMessage} />;
+  }
+
+  if (error) {
     return (
-      <div className="spinner-container">
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
+      <Container className="mt-5">
+        <Alert variant="warning" className="text-center">
+          <Alert.Heading>⚠️ {error}</Alert.Heading>
+          <p>The backend server is starting up (cold start on free hosting).</p>
+          <button className="btn btn-primary" onClick={() => window.location.reload()}>
+            Refresh Page
+          </button>
+        </Alert>
+      </Container>
     );
   }
 

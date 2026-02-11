@@ -14,26 +14,33 @@ const authRoutes = require('./routes/authRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// CORS configuration
-const allowedOrigins = [
-  'http://localhost:3000',
-  'https://frontend-5ogfepi7r-kingfxs-projects.vercel.app',
-  'https://frontend-phi-eight-78.vercel.app',
-  process.env.FRONTEND_URL
-].filter(Boolean);
-
+// CORS configuration - Allow all Vercel deployments
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (mobile apps, Postman, etc.)
     if (!origin) return callback(null, true);
     
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
+    // Allow localhost
+    if (origin && origin.includes('localhost')) {
+      return callback(null, true);
     }
+    
+    // Allow all Vercel deployments
+    if (origin && origin.includes('vercel.app')) {
+      return callback(null, true);
+    }
+    
+    // Allow production frontend URL
+    if (origin === process.env.FRONTEND_URL) {
+      return callback(null, true);
+    }
+    
+    // For development, allow all origins
+    callback(null, true);
   },
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -48,7 +55,12 @@ app.use('/api/auth', authRoutes);
 
 // Health check route
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Sport Bike API is running' });
+  res.json({ status: 'OK', message: 'Sport Bike API is running', timestamp: new Date().toISOString() });
+});
+
+// Wake-up endpoint (for keeping server alive)
+app.get('/api/wake', (req, res) => {
+  res.json({ status: 'awake', uptime: process.uptime() });
 });
 
 // Error handling middleware

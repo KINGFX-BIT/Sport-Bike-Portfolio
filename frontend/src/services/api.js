@@ -6,7 +6,8 @@ const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  timeout: 30000 // 30 second timeout for cold starts
 });
 
 // Add token to requests if available
@@ -17,6 +18,17 @@ api.interceptors.request.use((config) => {
   }
   return config;
 });
+
+// Add response interceptor for better error handling
+api.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.code === 'ECONNABORTED') {
+      console.log('Request timeout - Backend might be waking up from sleep');
+    }
+    return Promise.reject(error);
+  }
+);
 
 // Bike API calls
 export const bikeService = {
